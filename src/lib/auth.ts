@@ -3,9 +3,8 @@ import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { emailOTP } from 'better-auth/plugins'
 import { dash } from '@better-auth/infra'
 import { prisma } from '@/lib/prisma'
-import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { Resend } from 'resend'
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_API_KEY!,
@@ -21,6 +20,7 @@ export const auth = betterAuth({
   plugins: [
     emailOTP({
       async sendVerificationOTP({ email, otp, type }) {
+        const resend = new Resend(process.env.RESEND_API_KEY)
         try {
           await resend.emails.send({
             from: 'Nexus <onboarding@resend.dev>',
