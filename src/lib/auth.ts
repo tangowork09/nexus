@@ -1,9 +1,11 @@
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { emailOTP } from 'better-auth/plugins'
-import { phoneNumber } from 'better-auth/plugins'
 import { dash } from '@better-auth/infra'
 import { prisma } from '@/lib/prisma'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_API_KEY!,
@@ -12,33 +14,27 @@ export const auth = betterAuth({
     provider: 'postgresql',
   }),
 
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    },
-    microsoft: {
-      clientId: process.env.MICROSOFT_CLIENT_ID!,
-      clientSecret: process.env.MICROSOFT_CLIENT_SECRET!,
-      tenantId: process.env.MICROSOFT_TENANT_ID ?? 'common',
-    },
+  emailAndPassword: {
+    enabled: false,
   },
 
   plugins: [
     emailOTP({
       async sendVerificationOTP({ email, otp, type }) {
-        // TODO: replace with Resend / SendGrid in production
-        console.log(`[DEV] Email OTP for ${email} (${type}): ${otp}`)
+        try {
+          await resend.emails.send({
+            from: 'Nexus <onboarding@resend.dev>',
+            to: email,
+            subject: 'Your Nexus Verification Code',
+            html: `<p>Your verification code is <strong>${otp}</strong>.</p><p>It will expire in 5 minutes.</p>`,
+          })
+          console.log(`[DEV] Sent Email OTP to ${email}: ${otp}`)
+        } catch (error) {
+          console.error('Failed to send OTP:', error)
+          throw error
+        }
       },
       expiresIn: 300, // 5 minutes
-    }),
-
-    phoneNumber({
-      sendOTP: async ({ phoneNumber: phone, code }) => {
-        // TODO: replace with Twilio Verify in production
-        console.log(`[DEV] SMS OTP for ${phone}: ${code}`)
-      },
-      expiresIn: 300,
     }),
 
     dash({
