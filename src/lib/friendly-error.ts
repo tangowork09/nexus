@@ -18,12 +18,18 @@ export function friendlyError(e: unknown): string {
     return "We couldn't find an account with those details."
   }
   if (raw.includes('already') || raw.includes('exists')) {
+    if (raw.includes('username')) return 'That username is already taken. Try another!'
     return 'An account with those details already exists. Try signing in instead.'
   }
   if (raw.includes('network') || raw.includes('fetch') || raw.includes('failed to fetch')) {
     return "Can't reach our servers. Check your connection and try again."
   }
 
-  // Catch-all — server / unknown error
+  // Catch-all: If it's a short, specific message from our API, just show it.
+  if (e instanceof Error && e.message.length < 60 && !e.message.includes('\n')) {
+     return e.message
+  }
+
+  // Generic fallback
   return "It's not you, it's us. Something went wrong on our end — please try again."
 }

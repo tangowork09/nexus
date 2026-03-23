@@ -25,3 +25,13 @@ export const Difficulty = {
 } as const
 
 export type Difficulty = (typeof Difficulty)[keyof typeof Difficulty]
+
+
+export const EmploymentStatus = {
+  EMPLOYED: 'EMPLOYED',
+  ON_BENCH: 'ON_BENCH',
+  OPEN_TO_WORK: 'OPEN_TO_WORK',
+  UPSKILLING: 'UPSKILLING'
+} as const
+
+export type EmploymentStatus = (typeof EmploymentStatus)[keyof typeof EmploymentStatus]

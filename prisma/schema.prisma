@@ -84,16 +84,28 @@ enum Difficulty {
   HARD
 }
 
+enum EmploymentStatus {
+  EMPLOYED
+  ON_BENCH
+  OPEN_TO_WORK
+  UPSKILLING
+}
+
 model CandidateProfile {
   id     String @id @default(cuid())
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  xp         Int     @default(0)
-  streak     Int     @default(0)
-  level      Int     @default(1)
-  skills     Json    @default("{}")
-  openToWork Boolean @default(false)
+  designation      String?
+  employmentStatus EmploymentStatus @default(OPEN_TO_WORK)
+  currentCompany   String?
+  pastCompanies    Json             @default("[]")
+  resumeUrl        String?
+  skills           Json             @default("{}")
+
+  xp     Int @default(0)
+  streak Int @default(0)
+  level  Int @default(1)
 
   updatedAt DateTime @updatedAt
 }

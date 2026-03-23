@@ -1033,11 +1033,15 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 export const CandidateProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  designation: 'designation',
+  employmentStatus: 'employmentStatus',
+  currentCompany: 'currentCompany',
+  pastCompanies: 'pastCompanies',
+  resumeUrl: 'resumeUrl',
+  skills: 'skills',
   xp: 'xp',
   streak: 'streak',
   level: 'level',
-  skills: 'skills',
-  openToWork: 'openToWork',
   updatedAt: 'updatedAt'
 } as const
 
@@ -1154,16 +1158,16 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Int'
+ * Reference to a field of type 'EmploymentStatus'
  */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+export type EnumEmploymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmploymentStatus'>
     
 
 
 /**
- * Reference to a field of type 'Int[]'
+ * Reference to a field of type 'EmploymentStatus[]'
  */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+export type ListEnumEmploymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmploymentStatus[]'>
     
 
 
@@ -1178,6 +1182,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 

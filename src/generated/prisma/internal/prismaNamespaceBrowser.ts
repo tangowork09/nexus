@@ -142,11 +142,15 @@ export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[k
 export const CandidateProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  designation: 'designation',
+  employmentStatus: 'employmentStatus',
+  currentCompany: 'currentCompany',
+  pastCompanies: 'pastCompanies',
+  resumeUrl: 'resumeUrl',
+  skills: 'skills',
   xp: 'xp',
   streak: 'streak',
   level: 'level',
-  skills: 'skills',
-  openToWork: 'openToWork',
   updatedAt: 'updatedAt'
 } as const
 

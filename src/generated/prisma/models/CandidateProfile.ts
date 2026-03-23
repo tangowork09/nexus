@@ -41,31 +41,41 @@ export type CandidateProfileSumAggregateOutputType = {
 export type CandidateProfileMinAggregateOutputType = {
   id: string | null
   userId: string | null
+  designation: string | null
+  employmentStatus: $Enums.EmploymentStatus | null
+  currentCompany: string | null
+  resumeUrl: string | null
   xp: number | null
   streak: number | null
   level: number | null
-  openToWork: boolean | null
   updatedAt: Date | null
 }
 
 export type CandidateProfileMaxAggregateOutputType = {
   id: string | null
   userId: string | null
+  designation: string | null
+  employmentStatus: $Enums.EmploymentStatus | null
+  currentCompany: string | null
+  resumeUrl: string | null
   xp: number | null
   streak: number | null
   level: number | null
-  openToWork: boolean | null
   updatedAt: Date | null
 }
 
 export type CandidateProfileCountAggregateOutputType = {
   id: number
   userId: number
+  designation: number
+  employmentStatus: number
+  currentCompany: number
+  pastCompanies: number
+  resumeUrl: number
+  skills: number
   xp: number
   streak: number
   level: number
-  skills: number
-  openToWork: number
   updatedAt: number
   _all: number
 }
@@ -86,31 +96,41 @@ export type CandidateProfileSumAggregateInputType = {
 export type CandidateProfileMinAggregateInputType = {
   id?: true
   userId?: true
+  designation?: true
+  employmentStatus?: true
+  currentCompany?: true
+  resumeUrl?: true
   xp?: true
   streak?: true
   level?: true
-  openToWork?: true
   updatedAt?: true
 }
 
 export type CandidateProfileMaxAggregateInputType = {
   id?: true
   userId?: true
+  designation?: true
+  employmentStatus?: true
+  currentCompany?: true
+  resumeUrl?: true
   xp?: true
   streak?: true
   level?: true
-  openToWork?: true
   updatedAt?: true
 }
 
 export type CandidateProfileCountAggregateInputType = {
   id?: true
   userId?: true
+  designation?: true
+  employmentStatus?: true
+  currentCompany?: true
+  pastCompanies?: true
+  resumeUrl?: true
+  skills?: true
   xp?: true
   streak?: true
   level?: true
-  skills?: true
-  openToWork?: true
   updatedAt?: true
   _all?: true
 }
@@ -204,11 +224,15 @@ export type CandidateProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions
 export type CandidateProfileGroupByOutputType = {
   id: string
   userId: string
+  designation: string | null
+  employmentStatus: $Enums.EmploymentStatus
+  currentCompany: string | null
+  pastCompanies: runtime.JsonValue
+  resumeUrl: string | null
+  skills: runtime.JsonValue
   xp: number
   streak: number
   level: number
-  skills: runtime.JsonValue
-  openToWork: boolean
   updatedAt: Date
   _count: CandidateProfileCountAggregateOutputType | null
   _avg: CandidateProfileAvgAggregateOutputType | null
@@ -238,11 +262,15 @@ export type CandidateProfileWhereInput = {
   NOT?: Prisma.CandidateProfileWhereInput | Prisma.CandidateProfileWhereInput[]
   id?: Prisma.StringFilter<"CandidateProfile"> | string
   userId?: Prisma.StringFilter<"CandidateProfile"> | string
+  designation?: Prisma.StringNullableFilter<"CandidateProfile"> | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFilter<"CandidateProfile"> | $Enums.EmploymentStatus
+  currentCompany?: Prisma.StringNullableFilter<"CandidateProfile"> | string | null
+  pastCompanies?: Prisma.JsonFilter<"CandidateProfile">
+  resumeUrl?: Prisma.StringNullableFilter<"CandidateProfile"> | string | null
+  skills?: Prisma.JsonFilter<"CandidateProfile">
   xp?: Prisma.IntFilter<"CandidateProfile"> | number
   streak?: Prisma.IntFilter<"CandidateProfile"> | number
   level?: Prisma.IntFilter<"CandidateProfile"> | number
-  skills?: Prisma.JsonFilter<"CandidateProfile">
-  openToWork?: Prisma.BoolFilter<"CandidateProfile"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"CandidateProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -250,11 +278,15 @@ export type CandidateProfileWhereInput = {
 export type CandidateProfileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  designation?: Prisma.SortOrderInput | Prisma.SortOrder
+  employmentStatus?: Prisma.SortOrder
+  currentCompany?: Prisma.SortOrderInput | Prisma.SortOrder
+  pastCompanies?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  skills?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   streak?: Prisma.SortOrder
   level?: Prisma.SortOrder
-  skills?: Prisma.SortOrder
-  openToWork?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -265,11 +297,15 @@ export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CandidateProfileWhereInput | Prisma.CandidateProfileWhereInput[]
   OR?: Prisma.CandidateProfileWhereInput[]
   NOT?: Prisma.CandidateProfileWhereInput | Prisma.CandidateProfileWhereInput[]
+  designation?: Prisma.StringNullableFilter<"CandidateProfile"> | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFilter<"CandidateProfile"> | $Enums.EmploymentStatus
+  currentCompany?: Prisma.StringNullableFilter<"CandidateProfile"> | string | null
+  pastCompanies?: Prisma.JsonFilter<"CandidateProfile">
+  resumeUrl?: Prisma.StringNullableFilter<"CandidateProfile"> | string | null
+  skills?: Prisma.JsonFilter<"CandidateProfile">
   xp?: Prisma.IntFilter<"CandidateProfile"> | number
   streak?: Prisma.IntFilter<"CandidateProfile"> | number
   level?: Prisma.IntFilter<"CandidateProfile"> | number
-  skills?: Prisma.JsonFilter<"CandidateProfile">
-  openToWork?: Prisma.BoolFilter<"CandidateProfile"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"CandidateProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId">
@@ -277,11 +313,15 @@ export type CandidateProfileWhereUniqueInput = Prisma.AtLeast<{
 export type CandidateProfileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  designation?: Prisma.SortOrderInput | Prisma.SortOrder
+  employmentStatus?: Prisma.SortOrder
+  currentCompany?: Prisma.SortOrderInput | Prisma.SortOrder
+  pastCompanies?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  skills?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   streak?: Prisma.SortOrder
   level?: Prisma.SortOrder
-  skills?: Prisma.SortOrder
-  openToWork?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CandidateProfileCountOrderByAggregateInput
   _avg?: Prisma.CandidateProfileAvgOrderByAggregateInput
@@ -296,21 +336,29 @@ export type CandidateProfileScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CandidateProfileScalarWhereWithAggregatesInput | Prisma.CandidateProfileScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"CandidateProfile"> | string
   userId?: Prisma.StringWithAggregatesFilter<"CandidateProfile"> | string
+  designation?: Prisma.StringNullableWithAggregatesFilter<"CandidateProfile"> | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusWithAggregatesFilter<"CandidateProfile"> | $Enums.EmploymentStatus
+  currentCompany?: Prisma.StringNullableWithAggregatesFilter<"CandidateProfile"> | string | null
+  pastCompanies?: Prisma.JsonWithAggregatesFilter<"CandidateProfile">
+  resumeUrl?: Prisma.StringNullableWithAggregatesFilter<"CandidateProfile"> | string | null
+  skills?: Prisma.JsonWithAggregatesFilter<"CandidateProfile">
   xp?: Prisma.IntWithAggregatesFilter<"CandidateProfile"> | number
   streak?: Prisma.IntWithAggregatesFilter<"CandidateProfile"> | number
   level?: Prisma.IntWithAggregatesFilter<"CandidateProfile"> | number
-  skills?: Prisma.JsonWithAggregatesFilter<"CandidateProfile">
-  openToWork?: Prisma.BoolWithAggregatesFilter<"CandidateProfile"> | boolean
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CandidateProfile"> | Date | string
 }
 
 export type CandidateProfileCreateInput = {
   id?: string
+  designation?: string | null
+  employmentStatus?: $Enums.EmploymentStatus
+  currentCompany?: string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: number
   streak?: number
   level?: number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: boolean
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutCandidateProfileInput
 }
@@ -318,21 +366,29 @@ export type CandidateProfileCreateInput = {
 export type CandidateProfileUncheckedCreateInput = {
   id?: string
   userId: string
+  designation?: string | null
+  employmentStatus?: $Enums.EmploymentStatus
+  currentCompany?: string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: number
   streak?: number
   level?: number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: boolean
   updatedAt?: Date | string
 }
 
 export type CandidateProfileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFieldUpdateOperationsInput | $Enums.EmploymentStatus
+  currentCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   streak?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutCandidateProfileNestedInput
 }
@@ -340,43 +396,59 @@ export type CandidateProfileUpdateInput = {
 export type CandidateProfileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFieldUpdateOperationsInput | $Enums.EmploymentStatus
+  currentCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   streak?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CandidateProfileCreateManyInput = {
   id?: string
   userId: string
+  designation?: string | null
+  employmentStatus?: $Enums.EmploymentStatus
+  currentCompany?: string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: number
   streak?: number
   level?: number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: boolean
   updatedAt?: Date | string
 }
 
 export type CandidateProfileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFieldUpdateOperationsInput | $Enums.EmploymentStatus
+  currentCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   streak?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CandidateProfileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFieldUpdateOperationsInput | $Enums.EmploymentStatus
+  currentCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   streak?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -388,11 +460,15 @@ export type CandidateProfileNullableScalarRelationFilter = {
 export type CandidateProfileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
+  employmentStatus?: Prisma.SortOrder
+  currentCompany?: Prisma.SortOrder
+  pastCompanies?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
+  skills?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   streak?: Prisma.SortOrder
   level?: Prisma.SortOrder
-  skills?: Prisma.SortOrder
-  openToWork?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -405,20 +481,26 @@ export type CandidateProfileAvgOrderByAggregateInput = {
 export type CandidateProfileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
+  employmentStatus?: Prisma.SortOrder
+  currentCompany?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   streak?: Prisma.SortOrder
   level?: Prisma.SortOrder
-  openToWork?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type CandidateProfileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  designation?: Prisma.SortOrder
+  employmentStatus?: Prisma.SortOrder
+  currentCompany?: Prisma.SortOrder
+  resumeUrl?: Prisma.SortOrder
   xp?: Prisma.SortOrder
   streak?: Prisma.SortOrder
   level?: Prisma.SortOrder
-  openToWork?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -460,6 +542,10 @@ export type CandidateProfileUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CandidateProfileUpdateToOneWithWhereWithoutUserInput, Prisma.CandidateProfileUpdateWithoutUserInput>, Prisma.CandidateProfileUncheckedUpdateWithoutUserInput>
 }
 
+export type EnumEmploymentStatusFieldUpdateOperationsInput = {
+  set?: $Enums.EmploymentStatus
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -470,21 +556,29 @@ export type IntFieldUpdateOperationsInput = {
 
 export type CandidateProfileCreateWithoutUserInput = {
   id?: string
+  designation?: string | null
+  employmentStatus?: $Enums.EmploymentStatus
+  currentCompany?: string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: number
   streak?: number
   level?: number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: boolean
   updatedAt?: Date | string
 }
 
 export type CandidateProfileUncheckedCreateWithoutUserInput = {
   id?: string
+  designation?: string | null
+  employmentStatus?: $Enums.EmploymentStatus
+  currentCompany?: string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: number
   streak?: number
   level?: number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: boolean
   updatedAt?: Date | string
 }
 
@@ -506,21 +600,29 @@ export type CandidateProfileUpdateToOneWithWhereWithoutUserInput = {
 
 export type CandidateProfileUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFieldUpdateOperationsInput | $Enums.EmploymentStatus
+  currentCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   streak?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CandidateProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  designation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employmentStatus?: Prisma.EnumEmploymentStatusFieldUpdateOperationsInput | $Enums.EmploymentStatus
+  currentCompany?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  pastCompanies?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   xp?: Prisma.IntFieldUpdateOperationsInput | number
   streak?: Prisma.IntFieldUpdateOperationsInput | number
   level?: Prisma.IntFieldUpdateOperationsInput | number
-  skills?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  openToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -529,11 +631,15 @@ export type CandidateProfileUncheckedUpdateWithoutUserInput = {
 export type CandidateProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  designation?: boolean
+  employmentStatus?: boolean
+  currentCompany?: boolean
+  pastCompanies?: boolean
+  resumeUrl?: boolean
+  skills?: boolean
   xp?: boolean
   streak?: boolean
   level?: boolean
-  skills?: boolean
-  openToWork?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidateProfile"]>
@@ -541,11 +647,15 @@ export type CandidateProfileSelect<ExtArgs extends runtime.Types.Extensions.Inte
 export type CandidateProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  designation?: boolean
+  employmentStatus?: boolean
+  currentCompany?: boolean
+  pastCompanies?: boolean
+  resumeUrl?: boolean
+  skills?: boolean
   xp?: boolean
   streak?: boolean
   level?: boolean
-  skills?: boolean
-  openToWork?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidateProfile"]>
@@ -553,11 +663,15 @@ export type CandidateProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
 export type CandidateProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  designation?: boolean
+  employmentStatus?: boolean
+  currentCompany?: boolean
+  pastCompanies?: boolean
+  resumeUrl?: boolean
+  skills?: boolean
   xp?: boolean
   streak?: boolean
   level?: boolean
-  skills?: boolean
-  openToWork?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["candidateProfile"]>
@@ -565,15 +679,19 @@ export type CandidateProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
 export type CandidateProfileSelectScalar = {
   id?: boolean
   userId?: boolean
+  designation?: boolean
+  employmentStatus?: boolean
+  currentCompany?: boolean
+  pastCompanies?: boolean
+  resumeUrl?: boolean
+  skills?: boolean
   xp?: boolean
   streak?: boolean
   level?: boolean
-  skills?: boolean
-  openToWork?: boolean
   updatedAt?: boolean
 }
 
-export type CandidateProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "xp" | "streak" | "level" | "skills" | "openToWork" | "updatedAt", ExtArgs["result"]["candidateProfile"]>
+export type CandidateProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "designation" | "employmentStatus" | "currentCompany" | "pastCompanies" | "resumeUrl" | "skills" | "xp" | "streak" | "level" | "updatedAt", ExtArgs["result"]["candidateProfile"]>
 export type CandidateProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -592,11 +710,15 @@ export type $CandidateProfilePayload<ExtArgs extends runtime.Types.Extensions.In
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
+    designation: string | null
+    employmentStatus: $Enums.EmploymentStatus
+    currentCompany: string | null
+    pastCompanies: runtime.JsonValue
+    resumeUrl: string | null
+    skills: runtime.JsonValue
     xp: number
     streak: number
     level: number
-    skills: runtime.JsonValue
-    openToWork: boolean
     updatedAt: Date
   }, ExtArgs["result"]["candidateProfile"]>
   composites: {}
@@ -1024,11 +1146,15 @@ export interface Prisma__CandidateProfileClient<T, Null = never, ExtArgs extends
 export interface CandidateProfileFieldRefs {
   readonly id: Prisma.FieldRef<"CandidateProfile", 'String'>
   readonly userId: Prisma.FieldRef<"CandidateProfile", 'String'>
+  readonly designation: Prisma.FieldRef<"CandidateProfile", 'String'>
+  readonly employmentStatus: Prisma.FieldRef<"CandidateProfile", 'EmploymentStatus'>
+  readonly currentCompany: Prisma.FieldRef<"CandidateProfile", 'String'>
+  readonly pastCompanies: Prisma.FieldRef<"CandidateProfile", 'Json'>
+  readonly resumeUrl: Prisma.FieldRef<"CandidateProfile", 'String'>
+  readonly skills: Prisma.FieldRef<"CandidateProfile", 'Json'>
   readonly xp: Prisma.FieldRef<"CandidateProfile", 'Int'>
   readonly streak: Prisma.FieldRef<"CandidateProfile", 'Int'>
   readonly level: Prisma.FieldRef<"CandidateProfile", 'Int'>
-  readonly skills: Prisma.FieldRef<"CandidateProfile", 'Json'>
-  readonly openToWork: Prisma.FieldRef<"CandidateProfile", 'Boolean'>
   readonly updatedAt: Prisma.FieldRef<"CandidateProfile", 'DateTime'>
 }
     
