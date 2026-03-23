@@ -34,9 +34,9 @@ export const auth = betterAuth({
     }),
 
     phoneNumber({
-      sendOTP: async ({ phoneNumber: phone, otp }) => {
+      sendOTP: async ({ phoneNumber: phone, code }) => {
         // TODO: replace with Twilio Verify in production
-        console.log(`[DEV] SMS OTP for ${phone}: ${otp}`)
+        console.log(`[DEV] SMS OTP for ${phone}: ${code}`)
       },
       expiresIn: 300,
     }),
