@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Fragment } from 'react'
+import { useState, useEffect, Fragment, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Code2, Building2, Check, Upload, Sparkles, Briefcase, MapPin, Search, BookOpen, Plus, X } from 'lucide-react'
@@ -398,7 +398,7 @@ function PolicyModal({ type, onClose }: { type: 'terms' | 'privacy'; onClose: ()
 }
 
 /* ─── page ─────────────────────────────────────────────────── */
-export default function SignUpPage() {
+function SignUpForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [role, setRole] = useState<'candidate' | 'recruiter'>('candidate')
@@ -412,6 +412,7 @@ export default function SignUpPage() {
     if (e) setEmail(e)
     if (r && (r === 'candidate' || r === 'recruiter')) setRole(r)
   }, [searchParams])
+
   const [otp, setOtp] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -432,20 +433,15 @@ export default function SignUpPage() {
     
     setError(''); setLoading(true)
     try {
-      // 1. Check if user exists via Server Action
       const checkRes = await checkUserEmail(email)
-      
       if (checkRes.exists) {
         setIsExistingUser(true)
         setExistingUserRole(checkRes.role || '')
       } else {
         setIsExistingUser(false)
       }
-
-      // 2. Send OTP
       const { error: err } = await authClient.emailOtp.sendVerificationOtp({ email, type: 'sign-in' })
       if (err) throw new Error(err.message)
-      
       setOtp(''); setStep('otp'); setCountdown(60)
     } catch (e: any) {
       setError(friendlyError(e))
@@ -469,8 +465,6 @@ export default function SignUpPage() {
     try {
       const { error: err } = await authClient.signIn.emailOtp({ email, otp })
       if (err) throw new Error(err.message)
-      
-      // Refresh session
       const { data: sess } = await authClient.getSession()
       // @ts-ignore
       if (sess?.user?.onboarded) {
@@ -494,7 +488,6 @@ export default function SignUpPage() {
         const err = await res.json()
         throw new Error(err.error || 'Failed to update profile info')
       }
-      
       await authClient.getSession() 
       router.push('/dashboard')
     } catch (e: unknown) {
@@ -633,5 +626,13 @@ export default function SignUpPage() {
       </div>
       {showPolicy && <PolicyModal type={showPolicy} onClose={() => setShowPolicy(null)} />}
     </div>
+  )
+}
+
+export default function SignUpPage() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center font-black text-indigo-600 animate-pulse tracking-widest">LOADING NEXUS...</div>}>
+      <SignUpForm />
+    </Suspense>
   )
 }
